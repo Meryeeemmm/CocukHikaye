@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Çocuk Hikaye Oluşturucu</title>
+
+  <!-- Google Font: Baloo 2 -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Stil Dosyası -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+  <style>
+    /* tsparticles tam ekran arka plan */
+    #tsparticles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: -1;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div id="tsparticles"></div>
+
+  <div class="container">
+    <form id="storyForm">
+      <h1>📚 Hikaye Oluştur</h1>
+
+      <!-- Başlık -->
+      <label for="title"><strong>Hikaye Başlığı</strong></label>
+      <input type="text" id="title" name="title" placeholder="Örn: Cesur Tavşan" required />
+
+      <!-- Değerler -->
+      <p><strong>İşlenmesini İstediğiniz Değerler</strong></p>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="degerler" value="Cesaret" /> 🦁 Cesaret</label>
+        <label><input type="checkbox" name="degerler" value="Yardımlaşma" /> 🤝 Yardımlaşma</label>
+        <label><input type="checkbox" name="degerler" value="Dürüstlük" /> 🧭 Dürüstlük</label>
+        <label><input type="checkbox" name="degerler" value="Sabır" /> 🐢 Sabır</label>
+        <label><input type="checkbox" name="degerler" value="Namaz Bilinci" /> 🕌 Namaz Bilinci</label>
+        <label><input type="checkbox" name="degerler" value="Empati" /> 💞 Empati</label>
+        <label><input type="checkbox" name="degerler" value="Doğa Sevgisi" /> 🌳 Doğa Sevgisi</label>
+        <label><input type="checkbox" name="degerler" value="Ahlak" /> 🌟 Ahlak</label>
+      </div>
+
+      <!-- Yaş Grubu -->
+      <label for="yasGrubu"><strong>Yaş Grubu</strong></label>
+      <select id="yasGrubu" name="yas_grubu" required>
+        <option value="" disabled selected>Seçiniz</option>
+        <option value="4-6">4-6</option>
+        <option value="7-9">7-9</option>
+        <option value="10-12">10-12</option>
+      </select>
+
+      <!-- Karakter Türü -->
+      <label for="karakter"><strong>Karakter Türü</strong></label>
+      <input type="text" id="karakter" name="karakter" placeholder="🦊 Örn: Küçük bir sincap" />
+
+      <!-- Geçtiği Yer -->
+      <label for="gecisYer"><strong>Hikaye Nerede Geçsin?</strong></label>
+      <input type="text" id="gecisYer" name="gecis_yeri" placeholder="🌲 Örn: Bir ormanda" />
+
+      <!-- Hikaye Türü -->
+      <label for="hikayeTuru"><strong>Hikaye Türü</strong></label>
+      <select id="hikayeTuru" name="hikaye_turu" required>
+        <option value="" disabled selected>Seçiniz</option>
+        <option value="Masal">🌙 Masal</option>
+        <option value="Macera">🗺️ Macera</option>
+        <option value="Eğitici">📘 Eğitici</option>
+        <option value="Komik">😂 Komik</option>
+      </select>
+
+      <!-- Uzunluk -->
+      <label for="uzunluk"><strong>Hikaye Uzunluğu</strong></label>
+      <select id="uzunluk" name="uzunluk" required>
+        <option value="" disabled selected>Seçiniz</option>
+        <option value="Kısa">Kısa (200-300 kelime)</option>
+        <option value="Orta">Orta (300-500 kelime)</option>
+        <option value="Uzun">Uzun (500+ kelime)</option>
+      </select>
+
+      <!-- Buton -->
+      <button type="submit" id="generateButton">✍️ Hikaye Oluştur</button>
+
+      <!-- Yükleniyor & Hata -->
+      <div id="loadingIndicator" class="hidden loading-message">Hikaye oluşturuluyor... Lütfen bekleyin.</div>
+      <div id="errorMessage" class="hidden error-message"></div>
+
+      <!-- Sonuç -->
+      <div id="storyResultContainer" class="hidden">
+        <h2 class="story-result-title">📜 Oluşturulan Hikaye:</h2>
+        <img id="storyImage" src="" alt="Hikaye Görseli" style="width: 100%; border-radius: 20px; margin-bottom: 16px; display: none;" />
+        <p id="storyContent" class="story-content"></p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    window.API_PATH = "{{ api_path }}";
+    window.IMAGE_PATH = "{{ image_path }}";
+  </script>
+
+  <!-- tsparticles CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+  <!-- tsparticles başlatma -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
