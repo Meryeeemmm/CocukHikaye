@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>İslamî Çocuk Hikayesi Oluştur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>✨ İslamî Çocuk Hikayesi Oluştur</h1>
+
+    <form id="story-form">
+      <div class="row">
+        <div class="half">
+          <label for="age">Yaş Grubu</label>
+          <select id="age" name="age" required>
+            <option value="">Seçiniz</option>
+            <option value="3-5">3-5 Yaş</option>
+            <option value="6-8">6-8 Yaş</option>
+            <option value="9-11">9-11 Yaş</option>
+          </select>
+        </div>
+        <div class="half">
+          <label for="character">Ana Karakter</label>
+          <input id="character" name="character" placeholder="🐰 Örn: Küçük bir tavşan" required />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="half">
+          <label for="place">Hikaye Nerede Geçsin?</label>
+          <input id="place" name="place" placeholder="🕌 Örn: Bir cami bahçesi" required />
+        </div>
+        <div class="half">
+          <label for="length">Hikaye Uzunluğu</label>
+          <select id="length" name="length" required>
+            <option value="">Seçiniz</option>
+            <option value="kisa">Kısa</option>
+            <option value="orta">Orta</option>
+            <option value="uzun">Uzun</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="genre">Hikaye Türü</label>
+        <select id="genre" name="genre" required>
+          <option value="">Seçiniz</option>
+          <option value="macera">Macera</option>
+          <option value="egitici">Eğitici</option>
+          <option value="komik">Komik</option>
+          <option value="duygusal">Duygusal</option>
+        </select>
+      </div>
+
+      <div class="text-center">
+        <button type="button" id="show-values">🎈 Değerler</button>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" id="submit-btn">🙌 Hikaye Oluştur</button>
+      </div>
+    </form>
+
+    <!-- Modal -->
+    <div id="degerler-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>İşlenecek Değerleri Seçin</h2>
+        <form id="valuesForm">
+          <label><input type="checkbox" name="degerler" value="yardimseverlik"> Yardımseverlik</label>
+          <label><input type="checkbox" name="degerler" value="cesaret"> Cesaret</label>
+          <label><input type="checkbox" name="degerler" value="sabir"> Sabır</label>
+          <label><input type="checkbox" name="degerler" value="sadakat"> Sadakat</label>
+          <label><input type="checkbox" name="degerler" value="dogruluk"> Doğruluk</label>
+          <label><input type="checkbox" name="degerler" value="paylasmak"> Paylaşmak</label>
+          <label><input type="checkbox" name="degerler" value="hosgoru"> Hoşgörü</label>
+          <label><input type="checkbox" name="degerler" value="saygi"> Saygı</label>
+        </form>
+        <button id="close-degerler">Kapat</button>
+      </div>
+    </div>
+
+    <p id="errorMessage" class="error-message hidden"></p>
+
+    <div id="storyResultContainer" class="hidden">
+      <p id="storyContent"></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
